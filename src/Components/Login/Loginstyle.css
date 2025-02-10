@@ -1,0 +1,11 @@
+.login{
+  
+    background-image: url('../../assets/images/alarm-clock-laptop-with-copy-space.jpg');
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+   flex-direction: column;
+   justify-content: center;
+    align-items: center;
+}
