@@ -1,34 +1,48 @@
-import { createHashRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
-import Layout from "./Components/Layout/Layout";
-import Home from "./Components/Home/Home";
-import Cart from "./Components/Cart/Cart";
-import Products from "./Components/Products/Products";
-import NotFound from "./Components/NotFound/NotFound";
-import Categories from "./Components/Categories/Categories";
-import Brands from "./Components/Brands/Brands";
-import Login from "./Components/Login/Login";
-import Register from "./Components/Register/Register";
-import Authentication from "./Components/AuthenticationContext/Authentication";
-import ProtectedRoute from "./Components/Protected/ProtectedRoute";
-import ProtectedRoute2 from "./Components/Protected2/ProtectedRoute2";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { Toaster } from "react-hot-toast";
-
+import React from "react";
+import Authentication from "./Components/AuthenticationContext/Authentication";
 import CartProvider from "./Components/CartContext/CartProvider";
-import ProductDetail from "./Components/ProductDetails/ProductDetail";
-import WishList from "./Components/WishList/WishList";
 import WishProvider from "./Components/WishListContext/WishProvider";
-
-import Order from "./Components/Order/Order";
-import ForgotPass from "./Components/forgotPassword/ForgotPass";
-import ChangePass from "./Components/ChangePass/ChangePass";
-import ProductsInBrand from "./Components/ProductWithSpecificBrand/ProductsInBrand";
-import ProductwithCategory from "./Components/ProductwithCategory/ProductwithCategory";
-
+const Home = React.lazy(() => import("./Components/Home/Home"));
+const Cart = React.lazy(() => import("./Components/Cart/Cart"));
+const Layout = React.lazy(() => import("./Components/Layout/Layout"));
+const ProtectedRoute = React.lazy(() =>
+  import("./Components/Protected/ProtectedRoute")
+);
+const Products = React.lazy(() => import("./Components/Products/Products"));
+const WishList = React.lazy(() => import("./Components/WishList/WishList"));
+const ForgotPass = React.lazy(() =>
+  import("./Components/forgotPassword/ForgotPass")
+);
+const ChangePass = React.lazy(() =>
+  import("./Components/ChangePass/ChangePass")
+);
+const Categories = React.lazy(() =>
+  import("./Components/Categories/Categories")
+);
+const Brands = React.lazy(() => import("./Components/Brands/Brands"));
+const Order = React.lazy(() => import("./Components/Order/Order"));
+const ProductDetail = React.lazy(() =>
+  import("./Components/ProductDetails/ProductDetail")
+);
+const ProductsInBrand = React.lazy(() =>
+  import("./Components/ProductWithSpecificBrand/ProductsInBrand")
+);
+const ProductwithCategory = React.lazy(() =>
+  import("./Components/ProductwithCategory/ProductwithCategory")
+);
+const ProtectedRoute2 = React.lazy(() =>
+  import("./Components/Protected2/ProtectedRoute2")
+);
+const Login = React.lazy(() => import("./Components/Login/Login"));
+const Register = React.lazy(() => import("./Components/Register/Register"));
+const NotFound = React.lazy(() => import("./Components/NotFound/NotFound"));
 const queryClient = new QueryClient({});
-const router = createHashRouter([
+const router = createBrowserRouter([
   {
     path: "",
     element: <Layout />,
