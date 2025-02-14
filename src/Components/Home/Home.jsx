@@ -1,18 +1,17 @@
-import { faHeart, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import LoaderScreen from "../LoaderScreen/LoaderScreen";
 import HomeSlider from "../HomeSlider/HomeSlider";
 import CategoriesSlider from "../CategoriesSlider/CategoriesSlider";
 import { Link } from "react-router-dom";
 import { useContext, useEffect, useRef } from "react";
-
 import toast from "react-hot-toast";
 import useProduct from "../../customHooks/useProduct";
 import shoppingCart from "../../assets/images/shopping-cart.png";
 import useWish from "./../../customHooks/useWish";
-import { authenticateObj } from "../AuthenticationContext/Authentication";
 import useAddtoCart from "../../customHooks/useAddtoCart";
-import { cartContext } from "../CartContext/CartProvider";
+import { cartContext } from "./../Contexts/CartContext/CartProvider";
+import { authenticateObj } from "./../Contexts/AuthenticationContext/Authentication";
 
 export default function Home() {
   // const [productList, setproductList] = useState(null);
@@ -52,6 +51,8 @@ export default function Home() {
         if (res) {
           toast.success("success to remove from wish list");
           document.getElementById(id).classList.remove("toggole-heart");
+          document.getElementById(id).classList.remove("fa-solid");
+          document.getElementById(id).classList.add("fa-regular");
         }
 
         founded = true;
@@ -63,6 +64,8 @@ export default function Home() {
       if (res) {
         toast.success("success to added to wish list");
         document.getElementById(id).classList.add("toggole-heart");
+        document.getElementById(id).classList.add("fa-solid");
+        document.getElementById(id).classList.remove("fa-regular");
       }
     }
   }
@@ -98,13 +101,12 @@ export default function Home() {
         <h2 className=" font-bold m-3 md:text-3xl  dark:text-white text-black">
           Shop Product
         </h2>
-        <div className="grid  lg:grid-cols-5 md:grid-cols-3  gap-2 md:gap-6">
+        <div className="grid  lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2  gap-2 md:gap-6">
           {allProduct &&
             allProduct.map((product) => (
-              <Link
-                to={`/productDetails/${product._id}`}
+              <div
                 key={product._id}
-                className="p-6 product cursor-pointer dark:shadow-2xl dark:bg-[#222] dark:text-white overflow-hidden group my-2 shadow-lg  relative ">
+                className="p-6  cursor-pointer product dark:shadow-2xl dark:bg-[#222] dark:text-white overflow-hidden group my-2 shadow-lg  relative ">
                 <img
                   src={product.imageCover}
                   alt={product.title}
@@ -139,11 +141,16 @@ export default function Home() {
                     handleWish(product._id);
                     e.preventDefault();
                   }}
-                  className="absolute  transition-all top-0 left-1 h-3 w-3 p-3  rounded flex items-center justify-center"
-                  id={product._id}>
-                  <FontAwesomeIcon icon={faHeart} />
+                  className="absolute  transition-all top-0 left-1 h-3 w-3 p-3  rounded flex items-center justify-center">
+                  <i className="fa-regular fa-heart" id={product._id}></i>
                 </button>
-              </Link>
+
+                <Link
+                  to={`/productDetails/${product._id}`}
+                  className="absolute right-1 top-0 hover:text-[red] transition-all duration-500">
+                  <FontAwesomeIcon icon={faEye} />
+                </Link>
+              </div>
             ))}
         </div>
       </div>

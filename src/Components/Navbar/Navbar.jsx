@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { authenticateObj } from "../AuthenticationContext/Authentication";
+import { authenticateObj } from "../Contexts/AuthenticationContext/Authentication";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {
@@ -11,8 +11,8 @@ import {
   faSun,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { cartContext } from "../CartContext/CartProvider";
-import { wishContext } from "../WishListContext/WishProvider";
+import { cartContext } from "../Contexts/CartContext/CartProvider";
+import { wishContext } from "../Contexts/WishListContext/WishProvider";
 import shoppingCart from "../../assets/images/shopping-cart.png";
 export default function Navbar() {
   const { token, setToken } = useContext(authenticateObj);
@@ -126,6 +126,13 @@ export default function Navbar() {
                         to="brands"
                         className=" py-2 px-3  dark:text-white text-black">
                         Brands
+                      </NavLink>
+                    </li>
+                    <li className="my-2 ms-1">
+                      <NavLink
+                        to="myorders"
+                        className=" py-2 px-3  dark:text-white text-black">
+                        my Orders
                       </NavLink>
                     </li>
                   </ul>

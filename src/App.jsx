@@ -1,12 +1,12 @@
 import { createHashRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
 import { Toaster } from "react-hot-toast";
 import React from "react";
-import Authentication from "./Components/AuthenticationContext/Authentication";
-import CartProvider from "./Components/CartContext/CartProvider";
-import WishProvider from "./Components/WishListContext/WishProvider";
+import Authentication from "./Components/Contexts/AuthenticationContext/Authentication";
+import CartProvider from "./Components/Contexts/CartContext/CartProvider";
+import WishProvider from "./Components/Contexts/WishListContext/WishProvider";
+import MyOrders from "./Components/MyOrders/MyOrders";
 const Home = React.lazy(() => import("./Components/Home/Home"));
 const Cart = React.lazy(() => import("./Components/Cart/Cart"));
 const Layout = React.lazy(() => import("./Components/Layout/Layout"));
@@ -97,6 +97,14 @@ const router = createHashRouter([
         element: (
           <ProtectedRoute>
             <Categories />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/myorders",
+        element: (
+          <ProtectedRoute>
+            <MyOrders />
           </ProtectedRoute>
         ),
       },

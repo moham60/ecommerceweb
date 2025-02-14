@@ -4,11 +4,11 @@ import { Link, useParams } from "react-router-dom";
 import LoaderScreen from "../LoaderScreen/LoaderScreen";
 import shoppingCart from "../../assets/images/shopping-cart.png";
 import { useContext } from "react";
-import { cartContext } from "../CartContext/CartProvider";
 
 import useAddtoCart from "../../customHooks/useAddtoCart";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faStar } from "@fortawesome/free-solid-svg-icons";
+import { cartContext } from "./../Contexts/CartContext/CartProvider";
 export default function ProductsInBrand() {
   const { brandId } = useParams();
 
@@ -62,8 +62,8 @@ export default function ProductsInBrand() {
           productwithBrand.map((product) => (
             <div
               key={product.id}
-              className="hover:scale-110 transition-all p-4 shadow-lg hover:shadow-[#17f317] cursor-pointer duration-500 ">
-              <Link to={`/productDetails/${product.id}`} className=" ">
+              className=" transition-all relative p-4 shadow-lg hover:shadow-[#17f317] cursor-pointer duration-500 ">
+              <div to={`/productDetails/${product.id}`} className=" ">
                 <img src={product.imageCover} alt="" />
 
                 <h2 className="my-2 text-2xl">
@@ -82,7 +82,7 @@ export default function ProductsInBrand() {
                     </span>
                   </h3>
                 </div>
-              </Link>
+              </div>
               <button
                 onClick={() => {
                   addTocart(product.id);
@@ -93,6 +93,11 @@ export default function ProductsInBrand() {
                 </span>{" "}
                 Add to cart
               </button>
+              <Link
+                to={`/productDetails/${product._id}`}
+                className="absolute right-1 top-0 hover:text-[red] transition-all duration-500">
+                <FontAwesomeIcon icon={faEye} />
+              </Link>
             </div>
           ))
         ) : (

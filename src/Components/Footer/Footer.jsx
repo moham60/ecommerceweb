@@ -9,7 +9,7 @@ export default function Footer() {
       <p className="text-gray-400">
         We will send you a link, open it on your phone to download the app
       </p>
-      <div className="flex justify-center gap-2 my-4 items-center">
+      <div className="flex justify-center flex-col md:flex-row gap-2 my-4 items-center">
         <input
           type="email"
           className="w-[70%] rounded-md border-none"
@@ -17,15 +17,15 @@ export default function Footer() {
           id=""
           placeholder="Email.."
         />
-        <button className="p-2 rounded-md bg-[#04c033] text-white">
+        <button className="p-2 w-[70%] md:w-auto rounded-md bg-[#04c033] text-white">
           Share App Link
         </button>
       </div>
       <div className="flex my-4  py-6 justify-between">
-        <div className="payement flex items-center gap-2">
+        <div className="payement flex justify-center w-full items-center gap-2">
           <span className="text-xl">Payment Parteners:</span>
           <div className="images flex items-center gap-2">
-            <img className="w-[55px]" src={payImg1} alt="" />
+            <img className="w-[40px]" src={payImg1} alt="" />
             <img className="w-[40px]" src={payImg2} alt="" />
             <img className="w-[40px]" src={payImg3} alt="" />
             <img className="w-[40px]" src={payImg4} alt="" />

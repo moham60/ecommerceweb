@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { Link, useParams } from "react-router-dom";
-import { cartContext } from "../CartContext/CartProvider";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import LoaderScreen from "../LoaderScreen/LoaderScreen";
@@ -8,6 +7,7 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useAddtoCart from "../../customHooks/useAddtoCart";
 import shoppingCart from "../../assets/images/shopping-cart.png";
+import { cartContext } from "../Contexts/CartContext/CartProvider";
 
 export default function ProductwithCategory() {
   const { categoryId } = useParams();
@@ -62,7 +62,7 @@ export default function ProductwithCategory() {
           productwithcategory.map((product) => (
             <div
               key={product.id}
-              className="hover:scale-110 transition-all p-4 shadow-lg hover:shadow-[#17f317] cursor-pointer duration-500 ">
+              className=" transition-all p-4 shadow-lg hover:shadow-[#17f317] cursor-pointer duration-500 ">
               <Link to={`/productDetails/${product.id}`} className=" ">
                 <img src={product.imageCover} alt="" />
 

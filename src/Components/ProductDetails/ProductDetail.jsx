@@ -6,10 +6,10 @@ import LoaderScreen from "../LoaderScreen/LoaderScreen";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { useContext } from "react";
-import { cartContext } from "../CartContext/CartProvider";
 
 import Slider from "react-slick";
 import useAddtoCart from "../../customHooks/useAddtoCart";
+import { cartContext } from "./../Contexts/CartContext/CartProvider";
 
 export default function ProductDetail() {
   const { id } = useParams();
@@ -54,7 +54,7 @@ export default function ProductDetail() {
             <Slider {...settings} autoplay>
               {detailsProduct.images.map((img) => (
                 <div key={img}>
-                  <img src={img} alt="" />
+                  <img className="w-full" src={img} alt="" />
                 </div>
               ))}
             </Slider>

@@ -1,16 +1,17 @@
 import axios from "axios";
 import { useContext, useState } from "react";
 import { useFormik } from "formik";
-import { cartContext } from "../CartContext/CartProvider";
 import toast from "react-hot-toast";
+import { cartContext } from "./../Contexts/CartContext/CartProvider";
 
 export default function Order() {
-  const { cartId, resetValues } = useContext(cartContext);
+  const { cartId, userId, resetValues, getUserOders } = useContext(cartContext);
   var values = {
     details: "",
     phone: "",
     city: "",
   };
+
   const [isCahed, setisCahed] = useState(true);
 
   function createCashOrder(values) {
@@ -29,6 +30,7 @@ export default function Order() {
       .then((res) => {
         console.log(res);
         toast.success("Success to created order");
+        getUserOders(userId);
         resetValues();
         return true;
       })
@@ -62,6 +64,7 @@ export default function Order() {
       });
     return res;
   }
+
   const formik = useFormik({
     initialValues: values,
     onSubmit: function (values) {

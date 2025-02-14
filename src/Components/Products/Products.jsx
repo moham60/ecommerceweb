@@ -2,15 +2,15 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import LoaderScreen from "../LoaderScreen/LoaderScreen";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faHeart, faStar } from "@fortawesome/free-solid-svg-icons";
 import toast from "react-hot-toast";
 import useWish from "../../customHooks/useWish";
 import { Link } from "react-router-dom";
 import shoppingCart from "../../assets/images/shopping-cart.png";
 import useAddtoCart from "../../customHooks/useAddtoCart";
 import { useContext, useEffect, useRef } from "react";
-import { cartContext } from "../CartContext/CartProvider";
-import { authenticateObj } from "../AuthenticationContext/Authentication";
+import { cartContext } from "./../Contexts/CartContext/CartProvider";
+import { authenticateObj } from "./../Contexts/AuthenticationContext/Authentication";
 export default function Products() {
   async function getProducts() {
     return axios.get("https://ecommerce.routemisr.com/api/v1/products");
@@ -124,6 +124,11 @@ export default function Products() {
                   className="absolute  transition-all top-0 left-1 h-3 w-3 p-3  rounded flex items-center justify-center">
                   <FontAwesomeIcon icon={faHeart} id={product._id} />
                 </button>
+                <Link
+                  to={`/productDetails/${product._id}`}
+                  className="absolute right-1 top-0 hover:text-[red] transition-all duration-500">
+                  <FontAwesomeIcon icon={faEye} />
+                </Link>
               </Link>
             ))}
         </div>

@@ -1,10 +1,9 @@
 import { useContext } from "react";
-import { cartContext } from "../CartContext/CartProvider";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
-
 import "./cart.css";
 import LoaderScreen from "../LoaderScreen/LoaderScreen";
+import { cartContext } from "./../Contexts/CartContext/CartProvider";
 
 export default function Cart() {
   const {
@@ -77,7 +76,7 @@ export default function Cart() {
         <h1 className="md:text-3xl text-center   my-4 font-bold  ">
           Your Cart
         </h1>
-        <div className="bg-white dark:bg-gray-900 dark:text-white text-center shadow-md  duration-700 hover:cursor-pointer hover:shadow-[green] w-[25%] p-4 my-4 rounded-lg">
+        <div className=" bg-gray-900 text-white text-center shadow-md  duration-700 hover:cursor-pointer hover:shadow-[green] w-[50%] mx-auto p-4 my-4 rounded-lg">
           <h2 className="text-2xl my-4 ">Total Price:{totalCartPrice}</h2>
           <h3 className="text-2xl my-4 ">cart count:{numOfCartItems} </h3>
         </div>

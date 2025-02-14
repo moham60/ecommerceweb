@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
-import { authenticateObj } from "../AuthenticationContext/Authentication";
+import { authenticateObj } from "./../AuthenticationContext/Authentication";
 
 export const cartContext = createContext();
 
@@ -13,7 +13,8 @@ export default function CartProvider({ children }) {
   const [cartId, setcartId] = useState(null);
   const [userId, setuserId] = useState(null);
   const [isLoadingCartOperation, setisloading] = useState(false);
-
+  const [userOrders, setuserOrders] = useState(null);
+  const [isOrderCreated, setisOrderCreated] = useState(false);
   async function addtoCart(id) {
     setisloading(true);
     const res = await axios
@@ -49,12 +50,14 @@ export default function CartProvider({ children }) {
         },
       })
       .then((res) => {
+        console.log(res);
         setisloading(false);
         setuserId(res.data.data.cartOwner);
         setcartId(res.data.cartId);
         setnumOfCartItems(res.data.numOfCartItems);
         setproducts(res.data.data.products);
         settotalCartPrice(res.data.data.totalCartPrice);
+
         return true;
       })
       .catch((error) => {
@@ -64,12 +67,35 @@ export default function CartProvider({ children }) {
         return false;
       });
   }
+  async function getUserOders() {
+    setisloading(true);
+    return axios
+      .get(`https://ecommerce.routemisr.com/api/v1/orders/user/${userId}`)
+      .then((res) => {
+        console.log(res.data);
+        setisloading(false);
+        setuserOrders(res.data);
+        console.log(res.data);
+        setisOrderCreated(true);
+        return true;
+      })
+      .catch((error) => {
+        setisloading(false);
+
+        console.log(error);
+
+        return false;
+      });
+  }
 
   useEffect(() => {
     if (token) {
       getUserCartData();
+      if (userId) {
+        getUserOders();
+      }
     }
-  }, [token]);
+  }, [token, userId]);
   async function updateCartQuantity(count, id) {
     setisloading(true);
     const res = axios
@@ -166,6 +192,9 @@ export default function CartProvider({ children }) {
         resetValues,
         userId,
         isLoadingCartOperation,
+        getUserOders,
+        userOrders,
+        isOrderCreated,
       }}>
       {children}
     </cartContext.Provider>
