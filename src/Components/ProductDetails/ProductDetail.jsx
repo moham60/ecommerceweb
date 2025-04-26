@@ -49,8 +49,8 @@ export default function ProductDetail() {
         ""
       )}
       <div className="container relative p-10 mx-auto">
-        <div className="grid gap-6 items-center  lg:grid-cols-4">
-          <div className=" col-span-1">
+        <div className="flex items center flex-wrap">
+          <div className="left w-[30%]">
             <Slider {...settings} autoplay>
               {detailsProduct.images.map((img) => (
                 <div key={img}>
@@ -59,7 +59,7 @@ export default function ProductDetail() {
               ))}
             </Slider>
           </div>
-          <div className=" col-span-3">
+          <div className="right w-[70%]">
             <h1 className=" mb-3 md:text-xl">{detailsProduct.title}</h1>
             <p className="text-gray-400 dark:text-gray-200">
               {detailsProduct.description}
