@@ -107,9 +107,9 @@ export default function Register() {
     }),
   });
   return (
-    <div className="py-8 register  dark:bg-black dark:text-white ">
+    <div className="py-8 register   dark:bg-black dark:text-white ">
       <form
-        className="  w-[90%] md:w-[50%] lg:w-[35%] dark:bg-black  bg-white shadow-lg p-6 rounded-lg mx-auto"
+        className="w-[90%] md:w-[50%] lg:w-[35%] dark:bg-black  bg-white shadow-lg p-6 rounded-lg mx-auto"
         onSubmit={formikobj.handleSubmit}>
         <h1 className="text-center my-2  font-bold text-3xl">Register Now</h1>
         <div className="mb-5">
@@ -125,6 +125,7 @@ export default function Register() {
             value={formikobj.initialValues.name}
             onBlur={formikobj.handleBlur}
             name="name"
+            autoComplete="off"
             className="bg-gray-50  border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder=""
           />
@@ -151,6 +152,7 @@ export default function Register() {
             onBlur={formikobj.handleBlur}
             id="email"
             name="email"
+            autoComplete="off"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder=""
           />
@@ -174,6 +176,7 @@ export default function Register() {
             onChange={formikobj.handleChange}
             type="password"
             id="password"
+            autoComplete="off"
             value={formikobj.initialValues.password}
             onBlur={formikobj.handleBlur}
             name="password"
@@ -201,6 +204,7 @@ export default function Register() {
             onBlur={formikobj.handleBlur}
             type="password"
             id="repassword"
+            autoComplete="off"
             value={formikobj.initialValues.rePassword}
             name="rePassword"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -226,6 +230,7 @@ export default function Register() {
             type="tel"
             id="phone"
             name="phone"
+            autoComplete="off"
             value={formikobj.initialValues.phone}
             onBlur={formikobj.handleBlur}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"

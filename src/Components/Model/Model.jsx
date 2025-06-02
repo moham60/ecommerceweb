@@ -7,14 +7,14 @@ const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
-  bgcolor: "black ",
+
   transform: "translate(-50%, -50%)",
   width: "80%",
   maxHeight: "80vh", // Limit the height
   overflowY: "auto", // Enable scrolling
   border: "2px solid #000",
   scrollbarsWidth: "thin",
-  scrollbarColor: "aqua #000",
+  scrollbarColor: "gray #000",
   boxShadow: 24,
   p: 4,
 };
@@ -91,12 +91,12 @@ export default function BasicModal() {
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
-        <Box sx={style}>
+        <Box sx={style} className="dark:bg-gray-900 bg-white">
           <div className="container   mx-auto ">
-            <h1 className="md:text-3xl text-center text-white  my-4 font-bold  ">
+            <h1 className="md:text-3xl text-center   my-4 font-bold  ">
               Your Cart
             </h1>
-            <div className="bg-gray-900 w-full  text-white  text-center shadow-md  duration-700 hover:cursor-pointer hover:shadow-[green]  p-4 my-4 rounded-lg">
+            <div className="bg-white dark:bg-gray-950 w-full  dark:text-white  text-center shadow-md  duration-700 hover:cursor-pointer hover:shadow-[green]  p-4 my-4 rounded-lg">
               <h2 className="text-2xl my-4 ">Total Price:{totalCartPrice}</h2>
               <h3 className="text-2xl my-4 ">cart count:{numOfCartItems} </h3>
             </div>
@@ -177,7 +177,7 @@ export default function BasicModal() {
                                 onClick={() => {
                                   handleRemoveCartItem(product.product.id);
                                 }}
-                                className="font-medium rounded-lg border text-black border-[red] hover:bg-[red] p-2 dark:text-white hover:text-white">
+                                className="font-medium rounded-lg border text-black border-[red] hover:bg-[red] p-2 dark:text-white  hover:text-white">
                                 Remove
                               </button>
                             </td>
@@ -196,12 +196,12 @@ export default function BasicModal() {
               <div className="flex flex-col items-center">
                 <button
                   onClick={handleRemoveCart}
-                  className="  my-4 rounded-lg block mx-auto font-medium border text-white border-[red] hover:bg-[red] p-2  ">
+                  className="  my-4 rounded-lg block mx-auto font-medium border border-[red] hover:bg-[red] p-2 dark:text-white hover:text-white  ">
                   delete Cart
                 </button>
                 <Link
                   to="/order"
-                  className=" text-white text-center my-4 rounded-lg block mx-auto font-medium border   border-[green] hover:bg-[green] p-2    ">
+                  className="  text-center my-4 rounded-lg block mx-auto font-medium border   border-[green] dark:text-white hover:bg-[green] hover:text-white p-2    ">
                   Create Cash order
                 </Link>
               </div>

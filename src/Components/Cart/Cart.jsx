@@ -76,7 +76,7 @@ export default function Cart() {
         <h1 className="md:text-3xl text-center   my-4 font-bold  ">
           Your Cart
         </h1>
-        <div className=" bg-gray-900 text-white text-center shadow-md  duration-700 hover:cursor-pointer hover:shadow-[green] w-[50%] mx-auto p-4 my-4 rounded-lg">
+        <div className=" dark:bg-gray-950 bg-white  dark:text-white text-center shadow-md  duration-700 hover:cursor-pointer hover:shadow-emerald-300 w-[50%] mx-auto p-4 my-4 rounded-lg">
           <h2 className="text-2xl my-4 ">Total Price:{totalCartPrice}</h2>
           <h3 className="text-2xl my-4 ">cart count:{numOfCartItems} </h3>
         </div>
@@ -179,7 +179,7 @@ export default function Cart() {
             </button>
             <Link
               to="/order"
-              className="w-[25%]  text-center my-4 rounded-lg block mx-auto font-medium border text-black hover:text-white border-[green] hover:bg-[green] p-2    ">
+              className="w-[25%]  text-center my-4 rounded-lg block mx-auto font-medium border text-black hover:text-white border-emerald-700 hover:bg-emerald-700 p-2    ">
               Create Cash order
             </Link>
           </div>

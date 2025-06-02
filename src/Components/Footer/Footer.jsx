@@ -12,12 +12,12 @@ export default function Footer() {
       <div className="flex justify-center flex-col md:flex-row gap-2 my-4 items-center">
         <input
           type="email"
-          className="w-[70%] rounded-md border-none"
+          className="w-[70%] focus:outline-none   rounded-md border-none"
           name=""
           id=""
           placeholder="Email.."
         />
-        <button className="p-2 w-[70%] md:w-auto rounded-md bg-[#04c033] text-white">
+        <button className="p-2 w-[70%] md:w-auto rounded-md bg-emerald-700 text-white">
           Share App Link
         </button>
       </div>

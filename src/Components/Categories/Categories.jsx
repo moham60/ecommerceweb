@@ -25,14 +25,15 @@ export default function Categories() {
               to={`/productwithCategory/${category._id}`}
               key={category._id}
               className=" transition-all duration-[1s]
-              bg-gray-700
+              bg-white dark:bg-gray-800
+              text-black dark:text-white
+               
+              rounded-lg
               h-96
               my-4
             hover:shadow-[green] dark:hover:shadow-[red] hover:cursor-pointer hover:scale-110 shadow-sm p-5">
               <img className="w-56" src={category.image} alt={category.name} />
-              <h2 className="font-bold text-white text-xl p-2">
-                {category.name}
-              </h2>
+              <h2 className="font-bold text-xl p-2">{category.name}</h2>
             </Link>
           ))}
         </div>

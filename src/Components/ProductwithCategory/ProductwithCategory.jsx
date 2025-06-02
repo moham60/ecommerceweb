@@ -52,7 +52,7 @@ export default function ProductwithCategory() {
       ) : (
         ""
       )}
-      <h1 className="text-center text-[#12d823] font-serif  barndtitle relative  w-fit py-3  mx-auto my-10  text-4xl font-bold  rounded p-2">
+      <h1 className="text-center dark:text-emerald-400 font-serif  barndtitle relative  w-fit py-3  mx-auto my-10  text-4xl font-bold  rounded p-2">
         {catgoryName !== undefined
           ? `Product with category ${catgoryName}`
           : catgoryName}
@@ -62,7 +62,7 @@ export default function ProductwithCategory() {
           productwithcategory.map((product) => (
             <div
               key={product.id}
-              className=" transition-all p-4 shadow-lg hover:shadow-[#17f317] cursor-pointer duration-500 ">
+              className="  transition-all p-4 bg-white dark:bg-gray-900 rounded-lg shadow-lg hover:shadow-emerald-300 cursor-pointer duration-500 ">
               <Link to={`/productDetails/${product.id}`} className=" ">
                 <img src={product.imageCover} alt="" />
 
@@ -72,7 +72,7 @@ export default function ProductwithCategory() {
                 <div className="flex p-2  justify-between items-center">
                   <h3 className=" text-xl">
                     price:{" "}
-                    <span className="text-[#17f317]">{product.price}</span>
+                    <span className="text-emerald-300">{product.price}</span>
                   </h3>
                   <h3>
                     <span className="text-[#ffdf27]">
@@ -87,7 +87,7 @@ export default function ProductwithCategory() {
                 onClick={() => {
                   addTocart(product.id);
                 }}
-                className="w-full border border-[#17f317] hover:bg-[#17f317] hover:text-white flex items-center justify-center transition-all duration-300 my-4 p-2 rounded">
+                className="w-full border border-emerald-300 hover:bg-emerald-800 hover:text-white flex items-center justify-center transition-all duration-300 my-4 p-2 rounded">
                 <span className="me-2">
                   <img className="w-6" src={shoppingCart} alt="" />
                 </span>{" "}

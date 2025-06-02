@@ -45,6 +45,7 @@ export default function WishProvider({ children }) {
       .then((res) => {
         console.log(res);
         setwishListArray(res.data.data);
+        localStorage.setItem("wishListArray", JSON.stringify(res.data.data));
         setwishlistNumber(res.data.count);
         return true;
       })

@@ -6,18 +6,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCartShopping,
   faGear,
-  faHeart,
   faMoon,
   faSun,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { cartContext } from "../Contexts/CartContext/CartProvider";
-import { wishContext } from "../Contexts/WishListContext/WishProvider";
 import shoppingCart from "../../assets/images/shopping-cart.png";
 export default function Navbar() {
   const { token, setToken } = useContext(authenticateObj);
   const { numOfCartItems } = useContext(cartContext);
-  const { wishListNumber } = useContext(wishContext);
+
   const navigate = useNavigate();
 
   const [mode, setMode] = useState("system"); // Default to system
@@ -59,8 +57,7 @@ export default function Navbar() {
           <Link to="/" className="flex items-center gap-1  ">
             <FontAwesomeIcon
               icon={faCartShopping}
-              color="#17f317"
-              style={{ fontSize: "25px" }}
+              style={{ fontSize: "17px", color: "rgb(2 253 240)" }}
             />
             <span className="block w-[140px] font-meduim text-2xl  p-2">
               Fresh Cart
@@ -151,7 +148,7 @@ export default function Navbar() {
                           className="relative inline-flex items-center p-3 text-sm font-medium text-center ">
                           <img className="w-6" src={shoppingCart} alt="" />
 
-                          <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-[#089b03]  rounded-full -top-2 -end-2 dark:border-gray-900">
+                          <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-emerald-700  rounded-full -top-2 -end-2 dark:border-gray-900">
                             <span>{numOfCartItems}</span>
                           </div>
                         </button>
@@ -160,32 +157,13 @@ export default function Navbar() {
                   ) : (
                     ""
                   )}
-                  {token ? (
-                    <button
-                      onClick={() => {
-                        navigate("/wishlist");
-                      }}
-                      type="button"
-                      className="relative inline-flex items-center p-3 text-sm font-medium text-center ">
-                      <FontAwesomeIcon
-                        icon={faHeart}
-                        className="text-2xl text-[#00ff00] cursor-pointer"
-                      />
-
-                      <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-[#09ff00]  rounded-full -top-2 -end-2 dark:border-gray-900">
-                        <span>{wishListNumber}</span>
-                      </div>
-                    </button>
-                  ) : (
-                    ""
-                  )}
 
                   <li>
-                    <div className="border border-[#17f317] dark:text-white text-black z-10  hover:text-white hover:bg-[#17f317]   dark:hover:bg-[#17f317] rounded-lg p-2  relative">
+                    <div className="border border-emerald-700 dark:text-white text-black z-10  hover:text-white hover:bg-emerald-500   dark:hover:bg-emerald-400 rounded-lg p-2  relative">
                       <button className="" onClick={dropDownShow}>
                         Choose Mode
                       </button>
-                      <div className="dropDown   p-2 rounded-lg  absolute  hidden  left-[50%]  top-[50px] translate-x-[-50%] text-white  bg-[#17f317]   flex-col">
+                      <div className="dropDown   p-2 rounded-lg  absolute  hidden  left-[50%]  top-[50px] translate-x-[-50%] text-white dark:bg-black bg-white   flex-col">
                         <button
                           onClick={() => handleModeChange("light")}
                           className="px-2 py-1 mt-2 rounded-lg flex items-center gap-3 bg-black">

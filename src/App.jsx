@@ -14,7 +14,6 @@ const ProtectedRoute = React.lazy(() =>
   import("./Components/Protected/ProtectedRoute")
 );
 const Products = React.lazy(() => import("./Components/Products/Products"));
-const WishList = React.lazy(() => import("./Components/WishList/WishList"));
 const ForgotPass = React.lazy(() =>
   import("./Components/forgotPassword/ForgotPass")
 );
@@ -72,14 +71,6 @@ const router = createHashRouter([
         element: (
           <ProtectedRoute>
             <Products />
-          </ProtectedRoute>
-        ),
-      },
-      {
-        path: "/wishlist",
-        element: (
-          <ProtectedRoute>
-            <WishList />
           </ProtectedRoute>
         ),
       },

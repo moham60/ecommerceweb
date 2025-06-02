@@ -4,14 +4,15 @@ import LoaderScreen from "../LoaderScreen/LoaderScreen";
 import HomeSlider from "../HomeSlider/HomeSlider";
 import CategoriesSlider from "../CategoriesSlider/CategoriesSlider";
 import { Link } from "react-router-dom";
-import { useContext, useEffect, useRef } from "react";
-import toast from "react-hot-toast";
+import { useContext } from "react";
+
 import useProduct from "../../customHooks/useProduct";
 import shoppingCart from "../../assets/images/shopping-cart.png";
-import useWish from "./../../customHooks/useWish";
+
 import useAddtoCart from "../../customHooks/useAddtoCart";
 import { cartContext } from "./../Contexts/CartContext/CartProvider";
-import { authenticateObj } from "./../Contexts/AuthenticationContext/Authentication";
+
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export default function Home() {
   // const [productList, setproductList] = useState(null);
@@ -37,53 +38,8 @@ export default function Home() {
   const { isLoading, data } = useProduct();
   const allProduct = data?.data.data;
 
-  const { AddProductToWishlist, wishListArray, removeProductToWishlist } =
-    useWish();
-  const { token } = useContext(authenticateObj);
   const { isLoadingCartOperation } = useContext(cartContext);
   const addtocart = useAddtoCart();
-  var storewishList = [];
-  function handleWish(id) {
-    var founded = false;
-    wishListArray.map((product) => {
-      if (product.id === id) {
-        const res = removeProductToWishlist(id);
-        if (res) {
-          toast.success("success to remove from wish list");
-          document.getElementById(id).classList.remove("toggole-heart");
-          document.getElementById(id).classList.remove("fa-solid");
-          document.getElementById(id).classList.add("fa-regular");
-        }
-
-        founded = true;
-      }
-    });
-    if (!founded) {
-      const res = AddProductToWishlist(id);
-      localStorage.setItem("wishStore", storewishList.push(id));
-      if (res) {
-        toast.success("success to added to wish list");
-        document.getElementById(id).classList.add("toggole-heart");
-        document.getElementById(id).classList.add("fa-solid");
-        document.getElementById(id).classList.remove("fa-regular");
-      }
-    }
-  }
-  const elementRef = useRef(null);
-  useEffect(() => {
-    if (token) {
-      if (elementRef) {
-        {
-          wishListArray?.map((product) => {
-            var element = document.getElementById(product.id);
-            if (element) {
-              element.classList.add("toggole-heart");
-            }
-          });
-        }
-      }
-    }
-  }, [token]);
 
   return (
     <div className="dark:bg-black bg  relative dark:text-white ">
@@ -106,12 +62,14 @@ export default function Home() {
             allProduct.map((product) => (
               <div
                 key={product._id}
-                className="p-6  cursor-pointer product dark:shadow-2xl dark:bg-[#222] dark:text-white overflow-hidden group my-2 shadow-lg  relative ">
-                <img
+                className="p-6 bg-white rounded-lg  cursor-pointer product dark:shadow-2xl dark:bg-[#222] dark:text-white overflow-hidden group my-2 shadow-lg  relative ">
+                <LazyLoadImage
+                  visibleByDefault={false}
+                  className="w-full h-[200px] object-cover mb-4"
                   src={product.imageCover}
                   alt={product.title}
-                  className="w-full"
                 />
+
                 <h2 className=" text-green-500">{product.category.name}</h2>
                 <h2>{product.title.split(" ", 2).join(" ")}</h2>
 
@@ -135,14 +93,6 @@ export default function Home() {
                     <img className="w-6" src={shoppingCart} alt="" />
                   </span>{" "}
                   Add to cart
-                </button>
-                <button
-                  onClick={(e) => {
-                    handleWish(product._id);
-                    e.preventDefault();
-                  }}
-                  className="absolute  transition-all top-0 left-1 h-3 w-3 p-3  rounded flex items-center justify-center">
-                  <i className="fa-regular fa-heart" id={product._id}></i>
                 </button>
 
                 <Link

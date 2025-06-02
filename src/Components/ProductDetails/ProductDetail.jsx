@@ -49,24 +49,24 @@ export default function ProductDetail() {
         ""
       )}
       <div className="container relative p-10 mx-auto">
-        <div className="flex items center flex-wrap">
-          <div className="left w-[30%]">
+        <div className="flex flex-col bg-white shadow-lg px-2 py-6 dark:bg-gray-900 dark:text-white rounded-lg gap-5 md:flex-row items-center ">
+          <div className="lg:w-1/4   md:w-1/3 w-3/4 mb-4">
             <Slider {...settings} autoplay>
               {detailsProduct.images.map((img) => (
                 <div key={img}>
-                  <img className="w-full" src={img} alt="" />
+                  <img className="w-full rounded-lg" src={img} alt="" />
                 </div>
               ))}
             </Slider>
           </div>
-          <div className="right w-[70%]">
+          <div className="lg:w-3/4 md:w-2/3 w-full px-4">
             <h1 className=" mb-3 md:text-xl">{detailsProduct.title}</h1>
             <p className="text-gray-400 dark:text-gray-200">
               {detailsProduct.description}
             </p>
             <p className="my-2">
               Category:{" "}
-              <span className="text-emerald-800">
+              <span className="text-emerald-300">
                 {detailsProduct.category.name}
               </span>
             </p>
@@ -79,7 +79,7 @@ export default function ProductDetail() {
             </div>
             <button
               onClick={() => addTocart(id)}
-              className="py-4 w-full text-black border border-[green] hover:bg-[green] dark:text-white hover:text-white transition-all duration-[0.8s] mt-4 rounded ">
+              className="py-4 w-full text-black border border-emerald-500 hover:bg-emerald-900 dark:text-white hover:text-white transition-all duration-[0.8s] mt-4 rounded ">
               + Add to Cart
             </button>
           </div>
