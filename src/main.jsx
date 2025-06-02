@@ -5,6 +5,8 @@ import "../node_modules/flowbite/dist/flowbite.js";
 import "./index.css";
 import "flowbite";
 
+import "aos/dist/aos.css";
+
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <App />

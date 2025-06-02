@@ -1,10 +1,10 @@
-import { faEye, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import LoaderScreen from "../LoaderScreen/LoaderScreen";
 import HomeSlider from "../HomeSlider/HomeSlider";
 import CategoriesSlider from "../CategoriesSlider/CategoriesSlider";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 import useProduct from "../../customHooks/useProduct";
 import shoppingCart from "../../assets/images/shopping-cart.png";
@@ -13,6 +13,7 @@ import useAddtoCart from "../../customHooks/useAddtoCart";
 import { cartContext } from "./../Contexts/CartContext/CartProvider";
 
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import Aos from "aos";
 
 export default function Home() {
   // const [productList, setproductList] = useState(null);
@@ -34,7 +35,9 @@ export default function Home() {
   //   getAllProduct();
 
   // }, []);
-
+  useEffect(() => {
+    Aos.init();
+  }, []);
   const { isLoading, data } = useProduct();
   const allProduct = data?.data.data;
 
@@ -60,7 +63,12 @@ export default function Home() {
         <div className="grid  lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2  gap-2 md:gap-6">
           {allProduct &&
             allProduct.map((product) => (
-              <div
+              <Link
+                to={`/productDetails/${product._id}`}
+                data-aos="fade-up"
+                data-aos-easing="ease-in-out"
+                data-aos-delay="100"
+                data-aos-duration="1000"
                 key={product._id}
                 className="p-6 bg-white rounded-lg  cursor-pointer product dark:shadow-2xl dark:bg-[#222] dark:text-white overflow-hidden group my-2 shadow-lg  relative ">
                 <LazyLoadImage
@@ -94,13 +102,7 @@ export default function Home() {
                   </span>{" "}
                   Add to cart
                 </button>
-
-                <Link
-                  to={`/productDetails/${product._id}`}
-                  className="absolute right-1 top-0 hover:text-[red] transition-all duration-500">
-                  <FontAwesomeIcon icon={faEye} />
-                </Link>
-              </div>
+              </Link>
             ))}
         </div>
       </div>

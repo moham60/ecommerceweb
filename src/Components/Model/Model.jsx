@@ -84,7 +84,7 @@ export default function BasicModal() {
   return (
     <div>
       <Button onClick={handleOpen}>
-        <img className="w-10" src={shoppingCart} alt="" />
+        <img className="w-7" src={shoppingCart} alt="" />
       </Button>
       <Modal
         open={open}

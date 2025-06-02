@@ -2,8 +2,13 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import LoaderScreen from "../LoaderScreen/LoaderScreen";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import Aos from "aos";
 
 export default function Brands() {
+  useEffect(() => {
+    Aos.init();
+  }, []);
   async function getAllBrands() {
     return axios.get("https://ecommerce.routemisr.com/api/v1/brands");
   }
@@ -26,8 +31,12 @@ export default function Brands() {
             <Link
               to={`/productsWithBrand/${e._id}`}
               key={e._id}
-              className=" p-4 shadow-lg bg-gray-700 text-white cursor-pointer transition-all duration-[1s]
-            hover:shadow-[green] dark:hover:shadow-[red] hover:cursor-pointer hover:scale-110      ">
+              data-aos="fade-up"
+              data-aos-easing="ease-in-out"
+              data-aos-delay="200"
+              data-aos-duration="1000"
+              className=" p-4 shadow-lg bg-white  dark:bg-gray-950 dark:text-white cursor-pointer transition-all duration-[1s]
+            hover:shadow-emerald-300  hover:cursor-pointer hover:scale-110      ">
               <img className="w-full" src={e.image} alt="" />
               <h2 className="text-center     font-bold md:text-2xl">
                 {e.name}

@@ -4,31 +4,17 @@
 @tailwind utilities;
 
 .active{
-   
-   
     color: white;
    border-radius: 10px;
   background-color: rgba(5, 172, 163, 0.849);
 }
 
-.slick-prev, .slick-next{
-    display: none !important;
-}
- .slick-dots li button:before{
-    color: red !important;
-   
-}
+
 .toggole-heart{
 
   color: #17f317;
 }
-.product{
-    transition: 1s ease;
-}
-.product:hover{
-   
-    box-shadow: 0px 0px 5px 0px #09dd2c;
-}
+
 
 .bg{
      background-image: url('./assets/images/light-patten.svg');

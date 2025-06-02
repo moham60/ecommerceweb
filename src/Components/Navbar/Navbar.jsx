@@ -22,28 +22,27 @@ export default function Navbar() {
 
   useEffect(() => {
     const htmlElement = document.documentElement;
-    if (mode === "dark") {
+    if (localStorage.getItem("theme") === "dark") {
       htmlElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else if (mode === "light") {
+      setMode("dark");
+    } else if (localStorage.getItem("theme") === "light") {
       htmlElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
+      setMode("light");
     } else {
-      // System mode: Check OS preference
-      const prefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      ).matches;
-      if (prefersDark) {
+      // System mode
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
         htmlElement.classList.add("dark");
+        setMode("dark");
       } else {
         htmlElement.classList.remove("dark");
+        setMode("light");
       }
-      localStorage.setItem("theme", "system");
     }
   }, [mode]);
 
   const handleModeChange = (newMode) => {
     setMode(newMode);
+    localStorage.setItem("theme", newMode);
   };
   const dropDownShow = () => {
     document.querySelector(".dropDown").classList.toggle("hidden");
@@ -52,12 +51,12 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="shadow-xl bg     dark:bg-[#0e240df8] dark:text-white ">
+      <nav className="shadow-xl bg     dark:bg-emerald-950 dark:text-white ">
         <div className="max-w-screen-xl flex flex-wrap  sm:flex-nowrap    items-center gap-2 p-4">
           <Link to="/" className="flex items-center gap-1  ">
             <FontAwesomeIcon
               icon={faCartShopping}
-              style={{ fontSize: "17px", color: "rgb(2 253 240)" }}
+              style={{ fontSize: "17px", color: "rgb(2 253 295)" }}
             />
             <span className="block w-[140px] font-meduim text-2xl  p-2">
               Fresh Cart
@@ -159,26 +158,26 @@ export default function Navbar() {
                   )}
 
                   <li>
-                    <div className="border border-emerald-700 dark:text-white text-black z-10  hover:text-white hover:bg-emerald-500   dark:hover:bg-emerald-400 rounded-lg p-2  relative">
+                    <div className="border border-emerald-700 dark:text-white text-black z-10  hover:text-white hover:bg-emerald-700   dark:hover:bg-emerald-700 rounded-lg p-2  relative">
                       <button className="" onClick={dropDownShow}>
                         Choose Mode
                       </button>
-                      <div className="dropDown   p-2 rounded-lg  absolute  hidden  left-[50%]  top-[50px] translate-x-[-50%] text-white dark:bg-black bg-white   flex-col">
+                      <div className="dropDown   p-2 rounded-lg  absolute  hidden  left-[50%]  top-[50px] translate-x-[-50%] dark:text-white bg-white  dark:bg-black   flex-col">
                         <button
                           onClick={() => handleModeChange("light")}
-                          className="px-2 py-1 mt-2 rounded-lg flex items-center gap-3 bg-black">
+                          className="px-2 py-1 mt-2 rounded-lg flex items-center gap-3 bg-gray-950 text-white">
                           <FontAwesomeIcon icon={faSun} />
                           <span>LightMode</span>
                         </button>
                         <button
                           onClick={() => handleModeChange("dark")}
-                          className="px-2 py-1 mt-2 rounded-lg flex items-center gap-3 bg-black">
+                          className="px-2 py-1 mt-2 rounded-lg flex items-center gap-3 bg-gray-950 text-white">
                           <FontAwesomeIcon icon={faMoon} />
                           <span>DarkMode</span>
                         </button>
                         <button
                           onClick={() => handleModeChange("system")}
-                          className="px-2 py-1 mt-2 rounded-lg flex items-center gap-3 bg-black">
+                          className="px-2 py-1 mt-2 rounded-lg flex items-center gap-3 bg-gray-950 text-white">
                           <FontAwesomeIcon icon={faGear} />
                           <span>SystemMode</span>
                         </button>

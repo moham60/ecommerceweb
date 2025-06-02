@@ -4,7 +4,7 @@ import payImg3 from "../../assets/images/elo.svg";
 import payImg4 from "../../assets/images/reshot-icon-ecommerce-QHG2XWM49S.svg";
 export default function Footer() {
   return (
-    <div className="bg-zinc-100 bg dark:bg-[#021b0a] dark:text-white shadow-lg p-4 text-center ">
+    <div className="bg-zinc-100 bg dark:bg-emerald-950 dark:text-white shadow-lg p-4 text-center ">
       <h2 className="text-2xl">Get the FreshCart app</h2>
       <p className="text-gray-400">
         We will send you a link, open it on your phone to download the app

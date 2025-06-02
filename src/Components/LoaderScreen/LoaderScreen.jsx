@@ -7,7 +7,7 @@ export default function LoaderScreen() {
         visible={true}
         height="100"
         width="100"
-        color="#17f317"
+        color="rgb(38 223 255)"
         ariaLabel="three-circles-loading"
         wrapperStyle={{}}
         wrapperClass=""

@@ -2,8 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import LoaderScreen from "../LoaderScreen/LoaderScreen";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
+import Aos from "aos";
+import { useEffect } from "react";
 export default function Categories() {
+  useEffect(() => {
+    Aos.init();
+  }, []);
   async function getAllCategories() {
     return axios.get("https://ecommerce.routemisr.com/api/v1/categories");
   }
@@ -22,6 +26,10 @@ export default function Categories() {
         <div className="grid  gap-8 items-center text-center  md:grid-cols-3 lg:grid-cols-4">
           {allCategories.map((category) => (
             <Link
+              data-aos="fade-up"
+              data-aos-easing="ease-in-out"
+              data-aos-delay="100"
+              data-aos-duration="1000"
               to={`/productwithCategory/${category._id}`}
               key={category._id}
               className=" transition-all duration-[1s]

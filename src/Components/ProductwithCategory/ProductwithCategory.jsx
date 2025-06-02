@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
@@ -9,7 +9,12 @@ import useAddtoCart from "../../customHooks/useAddtoCart";
 import shoppingCart from "../../assets/images/shopping-cart.png";
 import { cartContext } from "../Contexts/CartContext/CartProvider";
 
+import Aos from "aos";
+
 export default function ProductwithCategory() {
+  useEffect(() => {
+    Aos.init();
+  }, []);
   const { categoryId } = useParams();
   const addTocart = useAddtoCart();
   const { isLoadingCartOperation } = useContext(cartContext);
@@ -62,6 +67,10 @@ export default function ProductwithCategory() {
           productwithcategory.map((product) => (
             <div
               key={product.id}
+              data-aos="fade-up"
+              data-aos-easing="ease-in-out"
+              data-aos-delay="100"
+              data-aos-duration="1000"
               className="  transition-all p-4 bg-white dark:bg-gray-900 rounded-lg shadow-lg hover:shadow-emerald-300 cursor-pointer duration-500 ">
               <Link to={`/productDetails/${product.id}`} className=" ">
                 <img src={product.imageCover} alt="" />

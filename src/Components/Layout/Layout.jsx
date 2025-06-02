@@ -9,7 +9,7 @@ export default function Layout() {
       <Navbar />
       <Outlet />
       <Footer />
-      <div className="fixed top-[50%] right-2">
+      <div className="fixed top-[50%] right-1">
         <BasicModal />
       </div>
     </div>
