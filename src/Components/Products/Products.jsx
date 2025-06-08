@@ -9,6 +9,7 @@ import shoppingCart from "../../assets/images/shopping-cart.png";
 import useAddtoCart from "../../customHooks/useAddtoCart";
 import { useContext, useEffect } from "react";
 import { cartContext } from "./../Contexts/CartContext/CartProvider";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export default function Products() {
   async function getProducts() {
@@ -28,15 +29,7 @@ export default function Products() {
   const allProduct = data?.data.data;
 
   return (
-    <div className="dark:bg-black bg relative p-4">
-      <div className="inpt  p-6">
-        <input
-          type="text"
-          className="w-[80%]  mx-auto block rounded border-1 border-emerald-300   "
-          placeholder="Search By Product Name"
-          autoComplete="off"
-        />
-      </div>
+    <div className="dark:bg-black bg relative">
       {isLoadingCartOperation ? (
         <div className="fixed z-10 flex items-center justify-center left-0 right-0 top-0 bottom-0 bg-[#e9dede8c]">
           {<LoaderScreen />};
@@ -57,7 +50,13 @@ export default function Products() {
                 to={`/productDetails/${product._id}`}
                 key={product._id}
                 className="p-6  hover:shadow-emerald-300 transition-all duration-700 rounded-lg   bg-white dark:bg-gray-950 dark:text-white overflow-hidden group  cursor-pointer my-4 shadow-lg relative">
-                <img className="w-full" src={product.imageCover} alt="" />
+                <LazyLoadImage
+                  visibleByDefault={false}
+                  className="w-full  object-cover mb-4"
+                  src={product.imageCover}
+                  alt={product.title}
+                />
+
                 <h2 className=" text-green-500">{product.category.name}</h2>
                 <h2>{product.title.split(" ", 2).join(" ")}</h2>
                 <div className="flex items-center justify-between  pb-4">
@@ -75,7 +74,7 @@ export default function Products() {
                     addtocart(product._id);
                     e.preventDefault();
                   }}
-                  className="bg-emerald-400 absolute group-hover:translate-y-0  left-[50%] translate-x-[-50%] transition-all bottom-2 translate-y-[150%] right-1 w-[80%]  p-1 text-white rounded-lg flex items-center justify-center ">
+                  className="bg-[green] absolute group-hover:translate-y-0  left-[50%] translate-x-[-50%] transition-all bottom-2 translate-y-[150%] right-1 w-[80%]  p-1 text-white rounded-lg flex items-center justify-center ">
                   <span className="me-2">
                     <img className="w-6" src={shoppingCart} alt="" />
                   </span>

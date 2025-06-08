@@ -7,14 +7,12 @@ const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
-
   transform: "translate(-50%, -50%)",
-  width: "80%",
+  width: "85%",
   maxHeight: "80vh", // Limit the height
   overflowY: "auto", // Enable scrolling
-  border: "2px solid #000",
   scrollbarsWidth: "thin",
-  scrollbarColor: "gray #000",
+  scrollbarColor: "gray  black",
   boxShadow: 24,
   p: 4,
 };
@@ -91,15 +89,13 @@ export default function BasicModal() {
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
-        <Box sx={style} className="dark:bg-gray-900 bg-white">
-          <div className="container   mx-auto ">
+        <Box
+          sx={style}
+          className="dark:bg-gray-900 bg dark:text-white  bg-white">
+          <div className="container    mx-auto ">
             <h1 className="md:text-3xl text-center   my-4 font-bold  ">
               Your Cart
             </h1>
-            <div className="bg-white dark:bg-gray-950 w-full  dark:text-white  text-center shadow-md  duration-700 hover:cursor-pointer hover:shadow-[green]  p-4 my-4 rounded-lg">
-              <h2 className="text-2xl my-4 ">Total Price:{totalCartPrice}</h2>
-              <h3 className="text-2xl my-4 ">cart count:{numOfCartItems} </h3>
-            </div>
 
             <div className="relative overflow-x-auto  ">
               {products.length > 0 ? (
@@ -143,10 +139,12 @@ export default function BasicModal() {
                               <div className="flex items-center">
                                 <button
                                   onClick={() => {
-                                    handleClick(
-                                      product.count - 1,
-                                      product.product.id
-                                    );
+                                    if (product.count > 1) {
+                                      handleClick(
+                                        product.count - 1,
+                                        product.product.id
+                                      );
+                                    }
                                   }}
                                   className="inline-flex items-center justify-center p-1 me-3 text-sm font-medium h-6 w-6 text-gray-500 bg-white border border-gray-300 rounded-full hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600">
                                   -
@@ -193,18 +191,32 @@ export default function BasicModal() {
             {products.length == 0 ? (
               <div className="dark:text-white">No Product in cart</div>
             ) : (
-              <div className="flex flex-col items-center">
-                <button
-                  onClick={handleRemoveCart}
-                  className="  my-4 rounded-lg block mx-auto font-medium border border-[red] hover:bg-[red] p-2 dark:text-white hover:text-white  ">
-                  delete Cart
-                </button>
-                <Link
-                  to="/order"
-                  className="  text-center my-4 rounded-lg block mx-auto font-medium border   border-[green] dark:text-white hover:bg-[green] hover:text-white p-2    ">
-                  Create Cash order
-                </Link>
-              </div>
+              <>
+                <div className="flex flex-col items-center">
+                  <button
+                    onClick={handleRemoveCart}
+                    className=" w-full my-4 rounded-lg block mx-auto font-medium border border-[red] hover:bg-[red] p-2 dark:text-white hover:text-white  ">
+                    delete Cart
+                  </button>
+                  <Link
+                    to="/order"
+                    className=" w-full text-center my-4 rounded-lg block mx-auto font-medium border   border-[green] dark:text-white hover:bg-[green] hover:text-white p-2    ">
+                    Create Cash order
+                  </Link>
+                </div>
+                <div className="bg-white dark:bg-gray-950  dark:text-white  text-center shadow-md  duration-700 hover:cursor-pointer   p-4 my-4 rounded-lg">
+                  <h2 className="text-2xl my-4  ">
+                    Total Price :{" "}
+                    <span className="text-yellow-300">
+                      {totalCartPrice} EGP
+                    </span>
+                  </h2>
+                  <h3 className="text-2xl my-4 ">
+                    Number Of Products In Cart:{" "}
+                    <span className="text-blue-500">{numOfCartItems}</span>
+                  </h3>
+                </div>
+              </>
             )}
           </div>
         </Box>

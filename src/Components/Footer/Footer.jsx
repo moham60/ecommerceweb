@@ -4,7 +4,7 @@ import payImg3 from "../../assets/images/elo.svg";
 import payImg4 from "../../assets/images/reshot-icon-ecommerce-QHG2XWM49S.svg";
 export default function Footer() {
   return (
-    <div className="bg-zinc-100 bg dark:bg-emerald-950 dark:text-white shadow-lg p-4 text-center ">
+    <div className=" bg dark:bg-gray-950 dark:text-white shadow-lg p-4 text-center ">
       <h2 className="text-2xl">Get the FreshCart app</h2>
       <p className="text-gray-400">
         We will send you a link, open it on your phone to download the app
@@ -12,12 +12,10 @@ export default function Footer() {
       <div className="flex justify-center flex-col md:flex-row gap-2 my-4 items-center">
         <input
           type="email"
-          className="w-[70%] focus:outline-none   rounded-md border-none"
-          name=""
-          id=""
+          className="w-[70%] focus:outline-none border   rounded-md "
           placeholder="Email.."
         />
-        <button className="p-2 w-[70%] md:w-auto rounded-md bg-emerald-700 text-white">
+        <button className="p-2 w-[70%] md:w-auto rounded-md bg-[#0a1179] hover:bg-[blue] text-white">
           Share App Link
         </button>
       </div>

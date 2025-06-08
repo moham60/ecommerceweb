@@ -1,9 +1,8 @@
 .register{
-       background-image: url('../../assets/images/alarm-clock-laptop-with-copy-space.jpg');
+       background-image: url('../../assets/images/alarm-clock-laptop-with-copy-space.webp');
     background-position: center;
     background-size: cover;
     min-height: 100vh;
     display: flex;
-   
     align-items: center;
 }

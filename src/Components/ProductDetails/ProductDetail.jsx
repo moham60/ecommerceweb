@@ -45,8 +45,8 @@ export default function ProductDetail() {
         ) : (
           ""
         )}
-        <div className="container relative p-10 mx-auto">
-          <div className="flex flex-col bg-white shadow-lg px-2 py-6 dark:bg-gray-900 dark:text-white rounded-lg gap-5 md:flex-row items-center ">
+        <div className="container  relative p-10 mx-auto">
+          <div className="flex flex-col bg-white  shadow-xl dark:shadow-sm-light px-2 py-6  dark:bg-gray-950 dark:text-white rounded-xl gap-5 md:flex-row items-center ">
             <div className="lg:w-1/4   md:w-1/3 w-3/4 mb-4">
               <Swiper
                 modules={[Navigation, Pagination, Scrollbar, A11y]}
@@ -59,7 +59,7 @@ export default function ProductDetail() {
                     key={index}
                     id={index}
                     className="carousel-item w-full cursor-pointer">
-                    <img src={img} className="w-full" alt="" />
+                    <img src={img} className="w-full " alt="" />
                   </SwiperSlide>
                 ))}
               </Swiper>
@@ -84,7 +84,7 @@ export default function ProductDetail() {
               </div>
               <button
                 onClick={() => addTocart(id)}
-                className="py-4 w-full text-black border border-emerald-500 hover:bg-emerald-900 dark:text-white hover:text-white transition-all duration-[0.8s] mt-4 rounded ">
+                className="py-4 w-full text-black border border-[#024d02] hover:bg-[#024d02] dark:text-white hover:text-white transition-all duration-[0.8s] mt-4 rounded ">
                 + Add to Cart
               </button>
             </div>

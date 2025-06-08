@@ -77,10 +77,10 @@ export default function Order() {
   });
 
   return (
-    <div className="py-10  dark:bg-black dark:text-white">
+    <div className="py-10  dark:bg-gray-950 dark:text-white">
       <form
         onSubmit={formik.handleSubmit}
-        className=" shadow-lg p-5 w-[50%] rounded-lg mx-auto">
+        className=" shadow-lg p-5 dark:bg-gray-950 bg-white dark:shadow-sm-light w-[50%] rounded-lg mx-auto">
         <h1 className="text-center font-bold md:text-3xl">Create Order</h1>
         <div className="relative z-0 w-full mb-5 group">
           <input
@@ -133,23 +133,24 @@ export default function Order() {
             Your Phone
           </label>
         </div>
-
-        <button
-          onClick={() => {
-            setisCahed(true);
-          }}
-          type="submit"
-          className="text-white bg-[#17f317]     focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center  ">
-          Create order
-        </button>
-        <button
-          onClick={() => {
-            setisCahed(false);
-          }}
-          type="submit"
-          className=" ms-4  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-white bg-[#17f317]  rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center hover:text-white ">
-          Checkout
-        </button>
+        <div className="btns flex flex-wrap gap-2">
+          <button
+            onClick={() => {
+              setisCahed(true);
+            }}
+            type="submit"
+            className="text-white   bg-[#0a1179] hover:bg-[blue]   focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center  ">
+            Create order
+          </button>
+          <button
+            onClick={() => {
+              setisCahed(false);
+            }}
+            type="submit"
+            className="  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-white bg-[#0a1179] hover:bg-[blue]  rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center hover:text-white ">
+            Checkout
+          </button>
+        </div>
       </form>
     </div>
   );

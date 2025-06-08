@@ -50,6 +50,7 @@ export default function Login() {
           icon: "error", // "error" shows the wrong icon
           button: "Try Again",
         });
+        setisloading(false);
       });
   }
   const formikobj = useFormik({
@@ -129,7 +130,7 @@ export default function Login() {
 
           <button
             type="submit"
-            className="text-white bg-emerald-700 hover:bg-emerald-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center ">
+            className="text-white bg-[#0a1179] hover:bg-[blue] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center ">
             Login
           </button>
         </form>
@@ -137,7 +138,7 @@ export default function Login() {
           onClick={() => {
             navigate("/forgotpass");
           }}
-          className=" mt-4 text-2xl hover:underline hover:text-[#17f317]">
+          className=" mt-4 text-2xl text-black hover:underline hover:text-[#0a1179]">
           Forgot your Password
         </button>
       </div>

@@ -23,7 +23,7 @@ export default function Categories() {
   return (
     <div className="dark:bg-black bg">
       <div className="container mx-auto py-10">
-        <div className="grid  gap-8 items-center text-center  md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid p-4  gap-8 items-center text-center  md:grid-cols-3 lg:grid-cols-4">
           {allCategories.map((category) => (
             <Link
               data-aos="fade-up"
@@ -37,10 +37,14 @@ export default function Categories() {
               text-black dark:text-white
                
               rounded-lg
-              h-96
+              
               my-4
             hover:shadow-[green] dark:hover:shadow-[red] hover:cursor-pointer hover:scale-110 shadow-sm p-5">
-              <img className="w-56" src={category.image} alt={category.name} />
+              <img
+                className="w-full"
+                src={category.image}
+                alt={category.name}
+              />
               <h2 className="font-bold text-xl p-2">{category.name}</h2>
             </Link>
           ))}

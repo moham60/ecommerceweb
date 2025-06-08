@@ -1,0 +1,33 @@
+.swiper-button-next,
+.swiper-button-prev {
+  width: 30px !important;       /* Change to desired size */
+  height: 30px !important;   /* Adjust icon size */
+  color: black !important;       /* Optional: change arrow color */
+}
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 24px !important;
+  
+    /* Controls the arrow icon size */
+}
+.swiper-button-next:after {
+    content: 'next';
+    position: absolute;
+    left: 10px !important;
+}
+ .swiper-button-prev:after {
+    content: 'prev';
+    position: absolute;
+    right: 10px !important;
+    
+}
+.swiper-pagination-bullet{
+    background-color: black !important;
+}
+
+ @media (min-width:750px) and (max-width:930px){
+  .nav{
+    justify-content: center !important;
+   
+  }
+  }
