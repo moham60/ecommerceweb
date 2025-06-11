@@ -1,1 +1,0 @@
-import{r as s,c as e,k as t}from"./index-omah4i2p.js";function i(){const{addtoCart:o}=s.useContext(e);return r=>{o(r)?setTimeout(()=>t.success("it is Added to cart",{duration:2e3,position:"top-right"}),3e3):t.error("error occured",{duration:2e3,position:"top-right"})}}export{i as u};
