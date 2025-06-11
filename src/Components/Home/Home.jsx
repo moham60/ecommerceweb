@@ -6,7 +6,7 @@ const HomeSlider = lazy(() => import("../HomeSlider/HomeSlider"));
 const CategoriesSlider = lazy(() =>
   import("../CategoriesSlider/CategoriesSlider")
 );
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import useProduct from "../../customHooks/useProduct";
 import shoppingCart from "../../assets/images/shopping-cart.png";
@@ -16,6 +16,7 @@ import { cartContext } from "./../Contexts/CartContext/CartProvider";
 
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import Aos from "aos";
+import { authenticateObj } from "../Contexts/AuthenticationContext/Authentication";
 
 export default function Home() {
   // const [productList, setproductList] = useState(null);
@@ -42,9 +43,11 @@ export default function Home() {
   }, []);
   const { data } = useProduct();
   const allProduct = data?.data.data;
+  const navigate = useNavigate();
 
   const { isLoadingCartOperation } = useContext(cartContext);
   const addtocart = useAddtoCart();
+  const { token } = useContext(authenticateObj);
 
   return (
     <div className="dark:bg-black   relative dark:text-white">
@@ -98,8 +101,12 @@ export default function Home() {
                 </div>
                 <button
                   onClick={(e) => {
-                    addtocart(product._id);
                     e.preventDefault();
+                    if (token) {
+                      addtocart(product._id);
+                    } else {
+                      navigate("/login");
+                    }
                   }}
                   className="bg-[green] absolute group-hover:translate-y-0  left-[50%] translate-x-[-50%] transition-all bottom-2 translate-y-[150%] right-1 w-[80%]  p-1 text-white rounded-lg flex items-center justify-center ">
                   <span className="me-2">
