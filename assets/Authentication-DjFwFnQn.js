@@ -1,0 +1,1 @@
+import{r as t,j as a}from"./index-LuwEtuzJ.js";const r=t.createContext();function u({children:o}){const[n,e]=t.useState(null);return t.useEffect(()=>{localStorage.getItem("tkn")!==null&&e(localStorage.getItem("tkn"))},[]),a.jsx(r.Provider,{value:{token:n,setToken:e},children:o})}export{r as authenticateObj,u as default};
