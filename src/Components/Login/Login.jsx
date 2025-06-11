@@ -9,6 +9,8 @@ import toast from "react-hot-toast";
 import "./Loginstyle.css";
 import LoaderScreen from "../LoaderScreen/LoaderScreen";
 
+// to extract user info from google account
+
 export default function Login() {
   const navigate = useNavigate();
   const { setToken } = useContext(authenticateObj);

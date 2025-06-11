@@ -65,7 +65,7 @@ export default function MyOrders() {
               </div>
             ))
           ) : (
-            <p className="text-6xl font-bold">No order</p>
+            <p className="text-6xl font-bold dark:text-white">No order</p>
           )}
         </div>
       </div>

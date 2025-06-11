@@ -41,6 +41,8 @@ const Login = React.lazy(() => import("./Components/Login/Login"));
 const Register = React.lazy(() => import("./Components/Register/Register"));
 const NotFound = React.lazy(() => import("./Components/NotFound/NotFound"));
 const queryClient = new QueryClient({});
+import { GoogleOAuthProvider } from "@react-oauth/google";
+
 const router = createHashRouter([
   {
     path: "",
@@ -163,17 +165,21 @@ const router = createHashRouter([
     ],
   },
 ]);
+const clientGoogleId =
+  "251669549089-4tpjd60lc8fg1vl8l8rsfgtgbtbjf18j.apps.googleusercontent.com";
 function App() {
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        <Authentication>
-          <CartProvider>
-            <WishProvider>
-              <RouterProvider router={router} />
-            </WishProvider>
-          </CartProvider>
-        </Authentication>
+        <GoogleOAuthProvider clientId={clientGoogleId}>
+          <Authentication>
+            <CartProvider>
+              <WishProvider>
+                <RouterProvider router={router} />
+              </WishProvider>
+            </CartProvider>
+          </Authentication>
+        </GoogleOAuthProvider>
       </QueryClientProvider>
       <Toaster />
     </>
