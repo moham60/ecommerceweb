@@ -7,8 +7,9 @@ import * as yup from "yup";
 import "./register.css";
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
-import LoginByGoogle from "../LoginByGoogle/LoginByGoogle.jsx";
+
 import { useState } from "react";
+import RegisterByGoogle from "./../RegisterByGoogle/RegisterByGoogle";
 
 export default function Register() {
   const navTohome = useNavigate();
@@ -115,11 +116,11 @@ export default function Register() {
   return (
     <>
       {formLoginGoogle ? (
-        <LoginByGoogle values={valuesJwt} />
+        <RegisterByGoogle values={valuesJwt} />
       ) : (
-        <div className="py-8 register   dark:bg-black dark:text-white ">
+        <div className="py-8 register    dark:bg-black dark:text-white ">
           <form
-            className="w-[90%] md:w-[50%] lg:w-[35%] dark:bg-black  bg-white shadow-lg p-6 rounded-lg mx-auto"
+            className="w-[90%] md:w-[50%] bg lg:w-[35%] dark:bg-black  bg-white shadow-lg p-6 rounded-lg mx-auto"
             onSubmit={formikobj.handleSubmit}>
             <h1 className="text-center my-2  font-bold text-3xl">
               Register Now

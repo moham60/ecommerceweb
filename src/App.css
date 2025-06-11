@@ -31,3 +31,14 @@
    
   }
   }
+
+  .slick-dots li button:before {
+    color: gray !important; /* default is light gray */
+    opacity: 1;
+    font-size: 12px;
+  }
+  
+  /* Change active dot */
+  .slick-dots li.slick-active button:before {
+    color: red !important; /* your custom color */
+  }

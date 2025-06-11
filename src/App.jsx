@@ -2,11 +2,17 @@ import { createHashRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
-import React from "react";
-import Authentication from "./Components/Contexts/AuthenticationContext/Authentication";
-import CartProvider from "./Components/Contexts/CartContext/CartProvider";
-import WishProvider from "./Components/Contexts/WishListContext/WishProvider";
-import MyOrders from "./Components/MyOrders/MyOrders";
+import React, { lazy, Suspense } from "react";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+const CartProvider = React.lazy(() =>
+  import("./Components/Contexts/CartContext/CartProvider")
+);
+const Authentication = lazy(() =>
+  import("./Components/Contexts/AuthenticationContext/Authentication")
+);
+const MyOrders = lazy(() => import("./Components/MyOrders/MyOrders"));
 const Home = React.lazy(() => import("./Components/Home/Home"));
 const Cart = React.lazy(() => import("./Components/Cart/Cart"));
 const Layout = React.lazy(() => import("./Components/Layout/Layout"));
@@ -169,20 +175,23 @@ const clientGoogleId =
   "251669549089-4tpjd60lc8fg1vl8l8rsfgtgbtbjf18j.apps.googleusercontent.com";
 function App() {
   return (
-    <>
+    <Suspense
+      fallback={
+        <div className="h-screen flex items-center justify-center text-xl">
+          جاري التحميل...
+        </div>
+      }>
       <QueryClientProvider client={queryClient}>
         <GoogleOAuthProvider clientId={clientGoogleId}>
           <Authentication>
             <CartProvider>
-              <WishProvider>
-                <RouterProvider router={router} />
-              </WishProvider>
+              <RouterProvider router={router} />
             </CartProvider>
           </Authentication>
         </GoogleOAuthProvider>
       </QueryClientProvider>
       <Toaster />
-    </>
+    </Suspense>
   );
 }
 

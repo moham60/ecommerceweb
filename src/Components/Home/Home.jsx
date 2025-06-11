@@ -47,7 +47,7 @@ export default function Home() {
   const addtocart = useAddtoCart();
 
   return (
-    <div className="dark:bg-black bg  relative dark:text-white">
+    <div className="dark:bg-black   relative dark:text-white">
       {isLoadingCartOperation ? (
         <div className="fixed z-10 flex items-center justify-center left-0 right-0 top-0 bottom-0 bg-[#e9dede8c]">
           {<LoaderScreen />};

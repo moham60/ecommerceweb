@@ -8,7 +8,9 @@ import { authenticateObj } from "../Contexts/AuthenticationContext/Authenticatio
 import toast from "react-hot-toast";
 import "./Loginstyle.css";
 import LoaderScreen from "../LoaderScreen/LoaderScreen";
-
+import { jwtDecode } from "jwt-decode";
+import { GoogleLogin } from "@react-oauth/google";
+import LoginByGoogle from "../LoginByGoogle/LoginByGoogle.jsx";
 // to extract user info from google account
 
 export default function Login() {
@@ -19,7 +21,7 @@ export default function Login() {
     password: "",
   };
   const [isloading, setisloading] = useState(false);
-
+  const [valuesJwt, setvaluesJwt] = useState(null);
   async function loginNewUser(values) {
     // try {
     //   const { data } = await axios.post("https://ecommerce.routemisr.com/api/v1/auth/signup", values);
@@ -59,91 +61,127 @@ export default function Login() {
     initialValues: {
       user,
     },
-    onSubmit: loginNewUser,
+    onSubmit: (v) => {
+      console.log(v);
+      if (valuesJwt) {
+        console.log(v);
+        const loginValues = {
+          email: v.values.email,
+          password: v.password,
+        };
+        loginNewUser(loginValues);
+      } else {
+        loginNewUser(v);
+      }
+    },
     validationSchema: yup.object().shape({
       email: yup.string().email().required("email is required"),
       password: yup.string().required("password is required"),
     }),
   });
-
+  const [formLoginGoogle, setformLoginGoogle] = useState(false);
   return (
     <>
-      <div className=" py-8 login    dark:bg-black dark:text-white">
-        {isloading ? (
-          <div className="fixed z-10 flex items-center justify-center left-0 right-0 top-0 bottom-0 bg-[#e9dede8c]">
-            {<LoaderScreen />};
-          </div>
-        ) : (
-          ""
-        )}
-        <form
-          className=" w-[90%] md:w-[50%] lg:w-[35%]  bg-white mx-auto shadow-lg dark:bg-black  dark:text-b rounded-lg p-5"
-          onSubmit={formikobj.handleSubmit}>
-          <h1 className="text-center dark:text-white my-2 text-black font-bold text-3xl">
-            Login Now
-          </h1>
-          <div className="mb-5">
-            <label
-              htmlFor="email"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-              Your email
-            </label>
-            <input
-              type="email"
-              id="email"
-              onChange={formikobj.handleChange}
-              onBlur={formikobj.handleBlur}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder=""
-            />
-            {formikobj.errors.email && formikobj.touched.email ? (
-              <div
-                className="p-4 mb-4 text-sm text-red-800 mt-2 rounded-lg bg-red-50 dark:bg-gray-800  dark:text-red-400 "
-                role="alert">
-                <span className="font-medium">{formikobj.errors.email}</span>
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
-          <div className="mb-5">
-            <label
-              htmlFor="password"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-              Your password
-            </label>
-            <input
-              type="password"
-              onChange={formikobj.handleChange}
-              onBlur={formikobj.handleBlur}
-              id="password"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            />
-            {formikobj.errors.password && formikobj.touched.password ? (
-              <div
-                className="p-4 mb-4 text-sm text-red-800 mt-2 rounded-lg bg-red-50 dark:bg-gray-800  dark:text-red-400 "
-                role="alert">
-                <span className="font-medium">{formikobj.errors.password}</span>
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
+      {formLoginGoogle ? (
+        <LoginByGoogle values={valuesJwt} />
+      ) : (
+        <div className=" py-8 login    dark:bg-black dark:text-white">
+          {isloading ? (
+            <div className="fixed z-10 flex items-center justify-center left-0 right-0 top-0 bottom-0 bg-[#e9dede8c]">
+              {<LoaderScreen />};
+            </div>
+          ) : (
+            ""
+          )}
+          <form
+            className=" w-[90%] bg md:w-[50%] lg:w-[35%]  bg-white mx-auto shadow-lg dark:bg-black  dark:text-b rounded-lg p-5"
+            onSubmit={formikobj.handleSubmit}>
+            <h1 className="text-center dark:text-white my-2 text-black font-bold text-3xl">
+              Login Now
+            </h1>
+            <div className="mb-5">
+              <label
+                htmlFor="email"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                Your email
+              </label>
+              <input
+                type="email"
+                id="email"
+                onChange={formikobj.handleChange}
+                onBlur={formikobj.handleBlur}
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder=""
+              />
+              {formikobj.errors.email && formikobj.touched.email ? (
+                <div
+                  className="p-4 mb-4 text-sm text-red-800 mt-2 rounded-lg bg-red-50 dark:bg-gray-800  dark:text-red-400 "
+                  role="alert">
+                  <span className="font-medium">{formikobj.errors.email}</span>
+                </div>
+              ) : (
+                ""
+              )}
+            </div>
+            <div className="mb-5">
+              <label
+                htmlFor="password"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                Your password
+              </label>
+              <input
+                type="password"
+                onChange={formikobj.handleChange}
+                onBlur={formikobj.handleBlur}
+                id="password"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              />
+              {formikobj.errors.password && formikobj.touched.password ? (
+                <div
+                  className="p-4 mb-4 text-sm text-red-800 mt-2 rounded-lg bg-red-50 dark:bg-gray-800  dark:text-red-400 "
+                  role="alert">
+                  <span className="font-medium">
+                    {formikobj.errors.password}
+                  </span>
+                </div>
+              ) : (
+                ""
+              )}
+            </div>
 
+            <button
+              type="submit"
+              className="text-white bg-[#0a1179] hover:bg-[blue] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center ">
+              Login
+            </button>
+            <button className="w-full mt-2">
+              <GoogleLogin
+                onSuccess={(credentialResponse) => {
+                  console.log(credentialResponse);
+                  const decoded = jwtDecode(credentialResponse.credential);
+                  console.log(decoded);
+                  const values = {
+                    email: decoded.email,
+                    password: "",
+                  };
+                  setvaluesJwt(values);
+                  setformLoginGoogle(true);
+                }}
+                onError={() => {
+                  console.log("Login Failed");
+                }}
+              />
+            </button>
+          </form>
           <button
-            type="submit"
-            className="text-white bg-[#0a1179] hover:bg-[blue] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center ">
-            Login
+            onClick={() => {
+              navigate("/forgotpass");
+            }}
+            className=" mt-4 text-2xl text-black hover:underline hover:text-[#0a1179]">
+            Forgot your Password
           </button>
-        </form>
-        <button
-          onClick={() => {
-            navigate("/forgotpass");
-          }}
-          className=" mt-4 text-2xl text-black hover:underline hover:text-[#0a1179]">
-          Forgot your Password
-        </button>
-      </div>
+        </div>
+      )}
     </>
   );
 }

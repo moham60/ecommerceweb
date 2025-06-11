@@ -36,8 +36,39 @@ export default function CategoriesSlider() {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 6,
+    slidesToShow: 5, // 👈 Default for large screens (above 1280px)
     slidesToScroll: 3,
+    arrows: false,
+    responsive: [
+      {
+        breakpoint: 1280, // screens smaller than 1280px
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 1024, // screens smaller than 1024px
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 640, // screens smaller than 640px
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 440, // screens smaller than 440px
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
   return (
     <>
@@ -65,7 +96,7 @@ export default function CategoriesSlider() {
                   <img
                     src={category.image}
                     loading="lazy"
-                    className="w-full md:h-48 h-28 block  "
+                    className="block w-full h-44 sm:h-32 md:h-32 "
                     alt={category.name}
                   />
                   <h4 className="dark:text-white">{category.name}</h4>
