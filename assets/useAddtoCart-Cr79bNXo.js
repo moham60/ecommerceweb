@@ -1,0 +1,1 @@
+import{r as s,k as t}from"./index-jfdzf-Pp.js";import{cartContext as e}from"./CartProvider-Bet4oSqe.js";function n(){const{addtoCart:o}=s.useContext(e);return r=>{o(r)?setTimeout(()=>t.success("it is Added to cart",{duration:2e3,position:"top-right"}),3e3):t.error("error occured",{duration:2e3,position:"top-right"})}}export{n as u};
