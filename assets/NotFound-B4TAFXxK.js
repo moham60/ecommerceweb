@@ -1,1 +1,0 @@
-import{j as e}from"./index-jfdzf-Pp.js";const s="/ecommerceweb/assets/error-B1_ZqxX0.svg";function r(){return e.jsx("div",{className:"h-[100vh] flex dark:bg-black items-center  justify-center p-16",children:e.jsx("img",{className:"w-25",src:s,alt:""})})}export{r as default};
