@@ -8,7 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import LoaderScreen from "../../Components/LoaderScreen/LoaderScreen";
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import useAddtoCart from "../../customHooks/useAddtoCart";
 import { cartContext } from './../../Contexts/CartContext/CartProvider';
 import { FaStar, FaX } from "react-icons/fa6";
@@ -16,6 +16,7 @@ export default function ProductDetail() {
   const { id } = useParams();
   const { isLoadingCartOperation } = useContext(cartContext);
   const [openModelImages, setopenModelImages] = useState(false);
+  const modelRef = useRef(null);
   async function getProductDetails() {
     return axios.get(`https://ecommerce.routemisr.com/api/v1/products/${id}`);
   }
@@ -42,7 +43,7 @@ export default function ProductDetail() {
   }
   return (
     <>
-      <div className="dark:bg-black relative dark:text-white bg">
+      <section className="dark:bg-black relative dark:text-white bg">
         {isLoadingCartOperation ? (
           <div className="fixed z-10 flex items-center justify-center left-0 right-0 top-0 bottom-0 bg-[#e9dede8c]">
             {<LoaderScreen />};
@@ -96,7 +97,15 @@ export default function ProductDetail() {
             </div>
           </div>
         </div>
-        {openModelImages && <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-40%] w-[90%] z-40 bg-white  p-6 flex items-center justify-center rounded-md dark:bg-gray-900    shadow-md">
+        {openModelImages && 
+          <div onClick={(e) => {
+            if (e.target !== modelRef.current) {
+              setopenModelImages(false);
+            }
+          }} className="fixed h-[100vh] flex items-center justify-center inset-0 z-50 bg-[#000000b0]">
+            <div onClick={(e) => {
+              e.stopPropagation()
+            }} ref={modelRef} className=" absolute w-[90%] md:w-[50%] z-40 bg-white  p-6 flex items-center justify-center rounded-md dark:bg-gray-900    shadow-md">
           <button onClick={handleCloseModelSwiper} className="close absolute cursor-pointer hover:text-gray-500 right-2 top-2">
             <FaX/>
           </button>
@@ -107,7 +116,7 @@ export default function ProductDetail() {
                 
                 slidesPerView={1}
             navigation
-            className="w-full"
+            className="w-full md:w-[60%]"
                 pagination={{ clickable: true }}>
                 {detailsProduct.images.map((img, index) => (
                   <SwiperSlide
@@ -122,8 +131,9 @@ export default function ProductDetail() {
           </div>
           
         </div>
+          </div>
         }
-      </div>
+      </section>
      
     </>
   );

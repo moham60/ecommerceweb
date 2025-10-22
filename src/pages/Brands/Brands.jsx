@@ -24,7 +24,7 @@ export default function Brands() {
   }
 
   return (
-    <div className="dark:bg-gray-800  bg">
+    <section className="dark:bg-gray-800  bg">
       <div className="container mx-auto p-10">
         <div className="grid gap-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
           {allBrands.map((e) => (
@@ -45,6 +45,6 @@ export default function Brands() {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

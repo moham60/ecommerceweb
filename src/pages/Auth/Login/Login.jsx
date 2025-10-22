@@ -83,7 +83,7 @@ export default function Login() {
       {formLoginGoogle ? (
         <LoginByGoogle values={valuesJwt} />
       ) : (
-        <div className=" py-8    dark:text-white">
+        <section className=" py-8    dark:text-white">
           {isloading ? (
             <div className="fixed z-10 flex items-center justify-center left-0 right-0 top-0 bottom-0 bg-[#e9dede8c]">
               {<LoaderScreen />};
@@ -181,7 +181,7 @@ export default function Login() {
           </button>
             </div>
          
-        </div>
+        </section>
       )}
     </>
   );

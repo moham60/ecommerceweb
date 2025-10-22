@@ -80,9 +80,9 @@ export default function Products() {
       <div className=" mt-1 p-4">
         {isLoading && <LoaderScreen />}
       
-        <div className=" flex  items-start  gap-4">
+        <div className=" flex  flex-col md:flex-row  items-start  gap-4">
           
-          <form onSubmit={filterInpts.handleSubmit} className="filter p-4 w-full dark:text-white bg-[#ececec62]  shadow-lg lg:w-[30%] dark:bg-[#141414da] rounded-lg   ">
+          <form onSubmit={filterInpts.handleSubmit} className="filter p-4 dark:text-white bg-[#ececec62] block w-full md:w-[40%]  shadow-lg  bg-gradient-to-r from-gray-200 to-gray-400 dark:from-gray-900 dark:to-gray-950 rounded-lg   ">
             <h4 className=" text-xl md:text-3xl font-bold">Filter Products</h4>
             <div className="priceInp my-4 ">
               <h5 >Price</h5>
@@ -118,7 +118,7 @@ export default function Products() {
             </div>
             <button type="submit" className="rounded-md  border border-blue-500 hover:bg-blue-600 p-2 hover:text-white">Show Products</button>
           </form>
-           <div className=" products lg:flex-1  grid gap-6 lg:grid-cols-4  sm:grid-cols-2">
+           <div className=" products w-full md:w-[60%]   grid gap-6 lg:grid-cols-3  sm:grid-cols-2">
             {displayedProducts &&   
             displayedProducts.map((product) => (
               <Link

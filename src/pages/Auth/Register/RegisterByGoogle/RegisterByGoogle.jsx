@@ -111,7 +111,7 @@ export default function RegisterByGoogle({ values }) {
   });
 
   return (
-    <div className="py-8 bg">
+    <section className="py-8 bg">
       {isloading ? (
         <div className="fixed z-10 flex items-center justify-center left-0 right-0 top-0 bottom-0 bg-[#e9dede8c]">
           {<LoaderScreen />};
@@ -219,6 +219,6 @@ export default function RegisterByGoogle({ values }) {
           Login
         </button>
       </form>
-    </div>
+    </section>
   );
 }

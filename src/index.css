@@ -3,6 +3,17 @@
 @tailwind components;
 @tailwind utilities;
 
+html.dark{
+   background-image: url('./assets/images/light-patten.svg');
+    background-position: center;
+    background-size: cover;
+}
+section{
+  min-height: 100vh;
+  background-image: url('./assets/images/light-patten.svg');
+    background-position: center;
+    background-size: cover;
+}
 .active{
     color: white;
    border-radius: 10px;
