@@ -1,0 +1,110 @@
+import { useContext, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
+import LoaderScreen from "../../Components/LoaderScreen/LoaderScreen";
+import useAddtoCart from "../../customHooks/useAddtoCart";
+import shoppingCart from "../../assets/images/shopping-cart.png";
+import { FaStar } from "react-icons/fa6";
+
+import Aos from "aos";
+import { cartContext } from './../../Contexts/CartContext/CartProvider';
+
+export default function ProductwithCategory() {
+  useEffect(() => {
+    Aos.init();
+  }, []);
+  const { categoryId } = useParams();
+  const addTocart = useAddtoCart();
+  const { isLoadingCartOperation } = useContext(cartContext);
+  function getSpecificProductBycategory() {
+    return axios.get(`https://ecommerce.routemisr.com/api/v1/products`, {
+      params: {
+        category: categoryId,
+      },
+    });
+  }
+  const { data, isLoading } = useQuery({
+    queryKey: ["getSpecificProductBycategory", categoryId],
+    queryFn: getSpecificProductBycategory,
+  });
+  if (isLoading) {
+    return <LoaderScreen />;
+  }
+  function getCategoryName() {
+    var catgoryName;
+    if (
+      productwithcategory !== null ||
+      productwithcategory.length > 0 ||
+      productwithcategory !== undefined
+    ) {
+      catgoryName = productwithcategory[0]?.category?.name;
+      if (catgoryName === undefined) {
+        return "No items available";
+      }
+    }
+    return catgoryName;
+  }
+  const productwithcategory = data?.data.data;
+  const catgoryName = getCategoryName();
+  return (
+    <div className=" min-h-[100vh]  p-4 relative dark:bg-black dark:text-white">
+      {isLoadingCartOperation ? (
+        <div className="fixed z-10 flex items-center justify-center left-0 right-0 top-0 bottom-0 bg-[#e9dede8c]">
+          {<LoaderScreen />};
+        </div>
+      ) : (
+        ""
+      )}
+      <h1 className="text-center dark:text-emerald-400 font-serif  barndtitle relative  w-fit py-3  mx-auto my-10  text-4xl font-bold  rounded p-2">
+        {catgoryName !== undefined
+          ? `Product with category ${catgoryName}`
+          : catgoryName}
+      </h1>
+      <div className="container grid   md:grid-cols-3 sm:grid-cols-2 gap-4 lg:grid-cols-4  mx-auto  py-16">
+        {productwithcategory ? (
+          productwithcategory.map((product) => (
+            <div
+              key={product.id}
+              data-aos="fade-up"
+              data-aos-easing="ease-in-out"
+              data-aos-delay="100"
+              data-aos-duration="1000"
+              className="  transition-all p-4 bg-white dark:bg-gray-900 rounded-lg shadow-lg hover:shadow-emerald-300 cursor-pointer duration-500 ">
+              <Link to={`/productDetails/${product.id}`} className=" ">
+                <img src={product.imageCover} alt="" />
+
+                <h2 className="my-2 text-2xl">
+                  title: {product.title.split(" ", 2)}
+                </h2>
+                <div className="flex p-2  justify-between items-center">
+                  <h3 className=" text-xl">
+                    price:{" "}
+                    <span className="text-emerald-300">{product.price}</span>
+                  </h3>
+                  <h3>
+                      <span className="flex items-center"> 
+                       <FaStar className="text-yellow-300"/>
+                    {product.ratingsAverage}</span>
+                  </h3>
+                </div>
+              </Link>
+              <button
+                onClick={() => {
+                  addTocart(product.id);
+                }}
+                className="w-full border border-emerald-300 hover:bg-emerald-800 hover:text-white flex items-center justify-center transition-all duration-300 my-4 p-2 rounded">
+                <span className="me-2">
+                  <img className="w-6" src={shoppingCart} alt="" />
+                </span>{" "}
+                Add to cart
+              </button>
+            </div>
+          ))
+        ) : (
+          <div>No products provided with this Brand</div>
+        )}
+      </div>
+    </div>
+  );
+}

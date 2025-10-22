@@ -57,14 +57,14 @@ export default function ChangePass() {
         )}
         <form
           onSubmit={formikObj.handleSubmit}
-          className="w-[90%] bg-white mx-auto shadow-lg dark:bg-white dark:text-b rounded-lg p-5">
-          <h1 className="text-center my-2 text-black font-bold text-3xl">
+          className="w-[90%] bg-white mx-auto shadow-lg dark:bg-black dark:text-white dark:text-b rounded-lg p-5">
+          <h1 className="text-center my-2  font-bold text-3xl">
             Change Password
           </h1>
           <div className="mb-5">
             <label
               htmlFor="email"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">
+              className="block mb-2 text-sm font-medium  ">
               Your Email
             </label>
             <input
@@ -81,7 +81,7 @@ export default function ChangePass() {
           <div className="mb-5">
             <label
               htmlFor="newPassword"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">
+              className="block mb-2 text-sm font-medium  ">
               New Password
             </label>
             <input
@@ -96,7 +96,7 @@ export default function ChangePass() {
           </div>
           <button
             type="submit"
-            className="text-white bg-[#17f317] hover:bg-[#28da04] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center ">
+            className="text-white bg-[#0a1179] hover:bg-[blue] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center ">
             Save
           </button>
         </form>

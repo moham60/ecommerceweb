@@ -70,7 +70,7 @@ export default function ForgotPass() {
   });
 
   return (
-    <div className=" py-8 login  relative   dark:bg-black dark:text-white">
+    <div className=" py-8   relative    dark:text-white">
       {isloading ? (
         <div className="fixed flex items-center justify-center left-0 right-0 top-0 bottom-0 bg-[#e9dede8c]">
           {<LoaderScreen />};
@@ -81,14 +81,14 @@ export default function ForgotPass() {
       {isConfirm ? (
         <form
           onSubmit={formikObj.handleSubmit}
-          className="w-[90%] bg-white dark:text-white mx-auto shadow-lg dark:bg-gray-950 dark:text-b rounded-lg p-5">
+          className="w-[90%] bg-white  mx-auto shadow-lg dark:bg-gray-950 dark:text-b rounded-lg p-5">
           <h1 className="text-center my-2  font-bold text-3xl">
             Forgot Password
           </h1>
-          <div className="mb-5">
+          <div className="mb-5 ">
             <label
               htmlFor="email"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">
+              className="block mb-2 text-sm font-medium  ">
               Your email
             </label>
             <input
@@ -111,8 +111,8 @@ export default function ForgotPass() {
       ) : (
         <form
           onSubmit={formikobj2.handleSubmit}
-          className="w-[90%] bg-white mx-auto shadow-lg dark:bg-white dark:text-b rounded-lg p-5">
-          <h1 className="text-center my-2 text-black font-bold text-3xl">
+          className="w-[90%] bg-white mx-auto shadow-lg dark:bg-black dark:text-b rounded-lg p-5">
+          <h1 className="text-center my-2  font-bold text-3xl">
             Enter Your verify Code
           </h1>
           <div className="mb-5">

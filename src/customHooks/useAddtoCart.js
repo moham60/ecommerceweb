@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import toast from "react-hot-toast";
-import { cartContext } from "./../Components/Contexts/CartContext/CartProvider";
+import { cartContext } from "../Contexts/CartContext/CartProvider";
 
 export default function useAddtoCart() {
   const { addtoCart } = useContext(cartContext);

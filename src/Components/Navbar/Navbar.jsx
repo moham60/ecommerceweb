@@ -1,9 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { authenticateObj } from "./../Contexts/AuthenticationContext/Authentication";
 import shoppingCart from "../../assets/images/shopping-cart.png";
+import { authenticateObj } from './../../Contexts/AuthenticationContext/Authentication';
+import { FaMoon, FaSun } from "react-icons/fa6";
 export default function Navbar() {
-  const { token, setToken } = useContext(authenticateObj); // مؤقتًا للتجربة
+  const { token, setToken } = useContext(authenticateObj); 
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ export default function Navbar() {
     document.documentElement.classList.toggle("dark");
   };
   return (
-    <nav className="bg-white border-gray-200   dark:bg-gray-950 bg fixed w-full z-20 top-0 left-0 right-0 border-b dark:border-gray-600">
+    <nav className="bg-white border-gray-200   dark:bg-[#030712]   fixed w-full z-20 top-0 left-0 right-0 border-b dark:border-b-gray-900">
       <div className="max-w-screen-xl flex  flex-wrap  nav    items-center  justify-between  p-4">
         <Link to="/" className="flex  items-center gap-1  ">
           <img className="w-7" src={shoppingCart} alt="" />
@@ -92,9 +93,10 @@ export default function Navbar() {
                     Brands
                   </NavLink>
                 </li>
+                
                 <li>
-                  <NavLink to="/myorders" className="nav-link p-2 rounded-lg">
-                    My Orders
+                  <NavLink to="/cart" className="nav-link p-2 rounded-md">
+                    Cart
                   </NavLink>
                 </li>
               </>
@@ -115,8 +117,8 @@ export default function Navbar() {
             <li>
               <button
                 onClick={toggleMode}
-                className="block w-full text-center py-2 px-3 dark:text-white text-black rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition">
-                {darkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
+                className="block w-full text-center p-2 dark:text-white text-black rounded-md hover:bg-gray-200 hover:text-gray-600 dark:hover:text-yellow-200 dark:hover:bg-gray-700 transition">
+                {darkMode ? <FaSun  size={25} /> : <FaMoon size={25} />}
               </button>
             </li>
             {token && (

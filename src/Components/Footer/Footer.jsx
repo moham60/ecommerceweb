@@ -4,7 +4,7 @@ import payImg3 from "../../assets/images/elo.svg";
 import payImg4 from "../../assets/images/reshot-icon-ecommerce-QHG2XWM49S.svg";
 export default function Footer() {
   return (
-    <div className=" bg dark:bg-gray-950 dark:text-white shadow-lg p-4 text-center ">
+    <div className="  dark:bg-[#030712] border-t border-t-gray-200 dark:border-t-gray-900 dark:text-white shadow-lg p-4 text-center ">
       <h2 className="text-2xl">Get the FreshCart app</h2>
       <p className="text-gray-400">
         We will send you a link, open it on your phone to download the app
@@ -22,7 +22,7 @@ export default function Footer() {
       <div className="flex my-4  py-6 justify-between">
         <div className="payement flex justify-center w-full items-center gap-2">
           <span className="text-xl">Payment Parteners:</span>
-          <div className="images flex items-center gap-2">
+          <div className="images flex flex-wrap items-center gap-2">
             <img className="w-[40px]" src={payImg1} alt="" />
             <img className="w-[40px]" src={payImg2} alt="" />
             <img className="w-[40px]" src={payImg3} alt="" />
